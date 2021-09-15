@@ -1,23 +1,25 @@
 package com.example.vsgservice.models;
 
 import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.springframework.data.annotation.Id;
 
 public class Member {
 
-    @BsonProperty("id")
-    public int id;
+    @Id
+    public String id;
+
     @BsonProperty("name")
     public String name;
     @BsonProperty("email_id")
     public String emailId;
 
-    public Member(int id, String name, String emailId) {
+    public Member(String id, String name, String emailId) {
         this.id = id;
         this.name = name;
         this.emailId = emailId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
