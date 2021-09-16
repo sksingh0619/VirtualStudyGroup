@@ -13,8 +13,7 @@ public class Member {
     @BsonProperty("email_id")
     public String emailId;
 
-    public Member(String id, String name, String emailId) {
-        this.id = id;
+    public Member(String name, String emailId) {
         this.name = name;
         this.emailId = emailId;
     }

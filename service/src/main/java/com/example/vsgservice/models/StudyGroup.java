@@ -1,10 +1,11 @@
 package com.example.vsgservice.models;
 
 import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.springframework.data.annotation.Id;
 
 public class StudyGroup {
 
-    @BsonProperty("id")
+    @Id
     public String id;
     @BsonProperty("group_name")
     public String groupName;
@@ -21,6 +22,10 @@ public class StudyGroup {
         this.subject = subject;
         this.topic = topic;
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getGroupName() {
