@@ -3,6 +3,9 @@ package com.example.vsgservice.models;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StudyGroup {
 
     @Id
@@ -15,13 +18,14 @@ public class StudyGroup {
     public String topic;
     @BsonProperty("description")
     public String description;
-    public int[] memberIds;
+    public List<String> memberIds;
 
     public StudyGroup(String groupName, String subject, String topic, String description) {
         this.groupName = groupName;
         this.subject = subject;
         this.topic = topic;
         this.description = description;
+        memberIds = new ArrayList<>();
     }
 
     public String getId() {
@@ -44,7 +48,7 @@ public class StudyGroup {
         return description;
     }
 
-    public int[] getMemberIds() {
+    public List<String> getMemberIds() {
         return memberIds;
     }
 }

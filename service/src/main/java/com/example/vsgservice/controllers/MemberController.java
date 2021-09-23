@@ -1,6 +1,8 @@
 package com.example.vsgservice.controllers;
 
-import com.example.vsgservice.dbService.MemberRepository;
+import com.example.vsgservice.dbService.JoinRequestService;
+import com.example.vsgservice.dbService.MemberService;
+import com.example.vsgservice.models.JoinRequestResult;
 import com.example.vsgservice.models.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,33 +12,47 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @RestController
 public class MemberController {
+
     @Autowired
-    private MemberRepository memberRepository;
+    MemberService memberService;
+
+    @Autowired
+    JoinRequestService joinRequestService;
 
     @GetMapping("/members/{memberId}")
     public ResponseEntity<Member> getMember(@PathVariable String memberId) {
-        Optional<Member> member = memberRepository.findById(memberId);
-        if (member.isPresent()) {
-            return new ResponseEntity<>(member.get(), HttpStatus.OK);
+        Member member = memberService.getMember(memberId);
+        if (member != null) {
+            return new ResponseEntity<>(member, HttpStatus.OK);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Member with " + memberId + " not found");
-            //return new ResponseEntity<>(, HttpStatus.NOT_FOUND);
         }
     }
 
     @PutMapping("/members")
     public ResponseEntity<Member> createMember(@Valid @RequestBody Member member) {
-        Member createdMember = memberRepository.save(member);
+        Member createdMember = memberService.createMember(member);
         return ResponseEntity.ok(createdMember);
     }
 
     @GetMapping("/members")
-    public ResponseEntity<List<Member>> getMembers(){
-        return new ResponseEntity<>(memberRepository.findAll(),HttpStatus.OK);
+    public ResponseEntity<List<Member>> getMembers() {
+        return new ResponseEntity<>(memberService.getMembers(), HttpStatus.OK);
+    }
+
+    @GetMapping("/members/{memberId}/requests")
+    public ResponseEntity<List<JoinRequestResult>> listJoinRequests(@PathVariable String memberId) {
+        return ResponseEntity.ok(joinRequestService.getJoinRequests(memberId));
+
+    }
+
+    @DeleteMapping("/members/{memberId}/requests/{requestId}")
+    public ResponseEntity deleteJoinRequest() {
+
+        return new ResponseEntity(HttpStatus.OK);
+
     }
 }

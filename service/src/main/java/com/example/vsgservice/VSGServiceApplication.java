@@ -23,10 +23,18 @@ public class VSGServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		memberRepository.save(new Member( "Raghvan", "raghu@rag.com"));
-//		memberRepository.save(new Member( "Abhi", "abhi@rag.com"));
 
-//		var s = studyGroupRepository.save(new StudyGroup("Sksingh","math","algebra","description"));
+		memberRepository.save(new Member( "Raghvan", "raghu@rag.com"));
+		memberRepository.save(new Member( "Abhi", "abhi@rag.com"));
+
+		studyGroupRepository.save(new StudyGroup("G1","math","algebra","description"));
+		studyGroupRepository.save(new StudyGroup("G2","math","algebra","description"));
+		studyGroupRepository.save(new StudyGroup("G3","math","algebra","description"));
+		studyGroupRepository.save(new StudyGroup("G4","math","algebra","description"));
+		studyGroupRepository.save(new StudyGroup("G5","phy","algebra","description"));
+		studyGroupRepository.save(new StudyGroup("G6","phy","algebra","description"));
+		studyGroupRepository.save(new StudyGroup("G7","bio","algebra","description"));
+
 //		System.out.println(s.id);
 	}
 }
