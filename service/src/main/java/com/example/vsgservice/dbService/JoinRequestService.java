@@ -15,13 +15,19 @@ import java.util.List;
 
 @Service
 public class JoinRequestService {
-    @Autowired
-    JoinRequestRepository joinRequestRepository;
-    @Autowired
-    MongoTemplate mongoTemplate;
+
+    private final JoinRequestRepository joinRequestRepository;
+
+    private final MongoTemplate mongoTemplate;
+
+    private final StudyGroupService studyGroupService;
 
     @Autowired
-    StudyGroupService studyGroupService;
+    public JoinRequestService(JoinRequestRepository joinRequestRepository, MongoTemplate mongoTemplate, StudyGroupService studyGroupService) {
+        this.joinRequestRepository = joinRequestRepository;
+        this.mongoTemplate = mongoTemplate;
+        this.studyGroupService = studyGroupService;
+    }
 
     public JoinRequest createJoinRequest(String memberId, String groupId) {
         JoinRequest requestJoin = new JoinRequest(memberId, groupId);

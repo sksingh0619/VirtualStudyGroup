@@ -10,8 +10,12 @@ import java.util.Optional;
 @Service
 public class StudyGroupService {
 
+    private final StudyGroupRepository studyGroupRepository;
+
     @Autowired
-    StudyGroupRepository studyGroupRepository;
+    public StudyGroupService(StudyGroupRepository studyGroupRepository) {
+        this.studyGroupRepository = studyGroupRepository;
+    }
 
     public StudyGroup getStudyGroup(String groupId){
        Optional<StudyGroup> studyGroup = studyGroupRepository.findById(groupId);

@@ -10,8 +10,13 @@ import java.util.Optional;
 @Service
 public class MemberService {
 
+
+    private final MemberRepository memberRepository;
+
     @Autowired
-    MemberRepository memberRepository;
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     public Member getMember(String memberId) {
         Optional<Member> member = memberRepository.findById(memberId);
