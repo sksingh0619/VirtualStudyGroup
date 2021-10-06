@@ -14,6 +14,8 @@ public class Member {
     public String name;
     @BsonProperty("email_id")
     public String emailId;
+    @BsonProperty("profile")
+    public String profile;
 
     public Member(String name, String emailId) {
         this.name = name;
@@ -30,5 +32,9 @@ public class Member {
 
     public String getEmailId() {
         return emailId;
+    }
+
+    public String getProfile() {
+        return profile;
     }
 }

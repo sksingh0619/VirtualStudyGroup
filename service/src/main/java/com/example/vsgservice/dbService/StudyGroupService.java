@@ -27,6 +27,7 @@ public class StudyGroupService {
 
     public StudyGroup createStudyGroup(StudyGroup studyGroup){
         return studyGroupRepository.save(studyGroup);
+
     }
 
     public List<StudyGroup> getStudyGroups(){
