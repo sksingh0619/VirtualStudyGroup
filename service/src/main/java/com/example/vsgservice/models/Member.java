@@ -17,9 +17,10 @@ public class Member {
     @BsonProperty("profile")
     public String profile;
 
-    public Member(String name, String emailId) {
+    public Member(String name, String emailId,String profile) {
         this.name = name;
         this.emailId = emailId;
+        this.profile = profile;
     }
 
     public String getId() {
